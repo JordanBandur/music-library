@@ -25,7 +25,7 @@ const library = {
   },
 };
 
-const assertEqual = function(actual, expected) {
+const assertEqual = function (actual, expected) {
   if (actual === expected) {
     console.log(`✅ Assertion Passed: ${actual} === ${expected}`);
   } else {
@@ -48,22 +48,34 @@ const printPlaylists = function(library) {
   }
 };
 
+console.log("Printing playlists: ");
 printPlaylists(library);
+console.log("\n");
 
 // prints a list of all tracks, using the following format:
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
-const printTracks = function() {};
+const printTracks = function(library) {
+  for (const key in library.tracks) {
+    console.log(
+      `${key}: ${library.tracks[key].name} by ${library.tracks[key].artist} (${library.tracks[key].album})`
+    );
+  }
+};
+
+console.log("Printing list of tracks: ");
+printTracks(library);
+console.log("\n");
 
 // prints a list of tracks for a given playlist, using the following format:
 // p01: Coding Music - 2 tracks
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
-const printPlaylist = function(playlistId) {};
+const printPlaylist = function (playlistId) { };
 
 // adds an existing track to an existing playlist
-const addTrackToPlaylist = function(trackId, playlistId) {};
+const addTrackToPlaylist = function (trackId, playlistId) {};
 
 // generates a unique id
 // (already implemented: use this for addTrack and addPlaylist)
@@ -74,7 +86,7 @@ const generateUid = function() {
 };
 
 // adds a track to the library
-const addTrack = function(name, artist, album) {};
+const addTrack = function (name, artist, album) {};
 
 // adds a playlist to the library
 const addPlaylist = function(name) {};
