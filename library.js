@@ -131,21 +131,34 @@ const generateUid = function() {
 
 // adds a track to the library
 const addTrack = function(name, artist, album) {
-  const uid = generateUid();
-  library.tracks[uid] = ({
-    id: uid,
+  const id = generateUid();
+  library.tracks[id] = {
+    id: id,
     name: name,
     artist: artist,
     album: album
-  });
+  };
 };
 
 console.log('Adding track: ');
 addTrack('Welcome to the jungle', "Guns N' Roses", 'Appetite for Destruction');
 console.log(library.tracks);
+console.log('\n');
 
 // adds a playlist to the library
-const addPlaylist = function(name) { };
+const addPlaylist = function(name) {
+  const id = generateUid();
+  library.playlists[id] = {
+    id: id,
+    name: name,
+    tracks: []
+  };
+};
+
+console.log("Adding Playlist: ");
+addPlaylist("Jordan's Playlist");
+console.log(library.playlists);
+console.log('\n');
 
 // STRETCH:
 // given a query string string, prints a list of tracks
