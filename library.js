@@ -25,7 +25,7 @@ const library = {
   },
 };
 
-const assertEqual = function (actual, expected) {
+const assertEqual = function(actual, expected) {
   if (actual === expected) {
     console.log(`✅ Assertion Passed: ${actual} === ${expected}`);
   } else {
@@ -40,42 +40,69 @@ const assertEqual = function (actual, expected) {
 // prints a list of all playlists, in the form:
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
-const printPlaylists = function(library) {
-  for (const prop in library.playlists) {
+const printPlaylists = function() {
+  const keys = Object.keys(library.playlists);
+  for (const val of keys) {
+    const { id, name, tracks } = library.playlists[val];
     console.log(
-      `${library.playlists[prop].id}: ${library.playlists[prop].name} - ${library.playlists[prop].tracks.length} tracks`
+      `${id}: ${name} - ${tracks.length} tracks`
     );
   }
 };
 
 console.log("Printing playlists: ");
-printPlaylists(library);
+printPlaylists();
 console.log("\n");
 
 // prints a list of all tracks, using the following format:
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
-const printTracks = function(library) {
-  for (const key in library.tracks) {
+const printTracks = function() {
+  const keys = Object.keys(library.tracks);
+  for (const val of keys) {
+    const { id, name, artist, album } = library.tracks[val];
     console.log(
-      `${key}: ${library.tracks[key].name} by ${library.tracks[key].artist} (${library.tracks[key].album})`
+      `${id}: ${name} by ${artist} (${album})`
     );
   }
 };
 
 console.log("Printing list of tracks: ");
-printTracks(library);
+printTracks();
 console.log("\n");
 
 // prints a list of tracks for a given playlist, using the following format:
 // p01: Coding Music - 2 tracks
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
-const printPlaylist = function (playlistId) { };
+const printPlaylist = function(playlistId) {
+  if (!library.playlists[playlistId]) {
+    console.log("Invalid playlist ID");
+    return;
+  }
+
+  const { id, name, tracks } = library.playlists[playlistId];
+  console.log(
+    `${id}: ${name} - ${tracks.length} tracks`
+  );
+
+  const trackId = library.playlists[playlistId].tracks;
+  const keys = Object.keys(library.tracks);
+  for (const track of trackId) {
+    const { id, name, artist, album } = library.tracks[track];
+    console.log(
+      `${id}: ${name} by ${artist} (${album})`
+    );
+  }
+};
+
+console.log("Retrieving Playlist: ");
+printPlaylist('p01');
+console.log("\n");
 
 // adds an existing track to an existing playlist
-const addTrackToPlaylist = function (trackId, playlistId) {};
+const addTrackToPlaylist = function(trackId, playlistId) { };
 
 // generates a unique id
 // (already implemented: use this for addTrack and addPlaylist)
@@ -86,14 +113,14 @@ const generateUid = function() {
 };
 
 // adds a track to the library
-const addTrack = function (name, artist, album) {};
+const addTrack = function(name, artist, album) { };
 
 // adds a playlist to the library
-const addPlaylist = function(name) {};
+const addPlaylist = function(name) { };
 
 // STRETCH:
 // given a query string string, prints a list of tracks
 // where the name, artist or album contains the query string (case insensitive)
 // tip: use "string".search("tri")
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
-const printSearchResults = function(query) {};
+const printSearchResults = function(query) { };
