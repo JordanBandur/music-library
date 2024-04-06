@@ -25,14 +25,6 @@ const library = {
   },
 };
 
-const assertEqual = function(actual, expected) {
-  if (actual === expected) {
-    console.log(`✅ Assertion Passed: ${actual} === ${expected}`);
-  } else {
-    console.log(`🛑 Assertion Failed: ${actual} !== ${expected}`);
-  }
-};
-
 /////////////////////////////
 // FUNCTIONS TO IMPLEMENT:
 /////////////////////////////
@@ -88,7 +80,6 @@ const printPlaylist = function(playlistId) {
   );
 
   const trackId = library.playlists[playlistId].tracks;
-  const keys = Object.keys(library.tracks);
   for (const track of trackId) {
     const { id, name, artist, album } = library.tracks[track];
     console.log(
