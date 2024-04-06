@@ -165,4 +165,32 @@ console.log('\n');
 // where the name, artist or album contains the query string (case insensitive)
 // tip: use "string".search("tri")
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
-const printSearchResults = function(query) { };
+const printSearchResults = function(query) {
+  if (!query) {
+    console.log("Please provide a search query.");
+    return;
+  }
+
+  const trackPath = library.tracks;
+  const keys = Object.keys(trackPath);
+
+  let resultArr = [];
+
+  for (const val of keys) {
+    const track = trackPath[val];
+    const searchString = `${track.name} ${track.artist} ${track.album}`.toLowerCase(); // concatenates the tracks name, artist, and albumn and converts that string to lowercase to make the search case-insensitive.
+    if (searchString.search(query.toLowerCase()) !== -1) { //checks if the query is found within the searchString, if it is found, it will not return -1, the formated track details are then added to resultArr
+      resultArr.push(`${track.name} by ${track.artist} on the album ${track.album}`);
+    }
+  }
+
+  if (resultArr.length > 0) {
+    console.log(`Found ${resultArr.length} matching track(s):`);
+    resultArr.forEach(result => console.log(result));
+  } else {
+    console.log("No matching tracks found.");
+  }
+
+};
+
+printSearchResults('jungle');
